@@ -1,0 +1,68 @@
+:root {
+    font-size: 16px;
+}
+body {
+    background-color: #222;
+    color: #ddd;
+    font-family: monospace;
+}
+
+body * {
+    text-align: center;
+}
+input, textarea {
+    text-align: left;
+}
+
+a {
+    color: #ddd
+}
+
+footer {
+    font-size: large;
+}
+#exercises {
+    display: flex;
+    justify-content: space-around;
+}
+.formdiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}
+.formColumn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.formdiv form input {
+    margin-top: 0.5rem;
+}
+input {
+    height: 2rem;
+}
+button {
+    height: 2rem;
+    background-color: teal;
+    color: white
+}
+#translateForm {
+    display: flex;
+}
+#translateDiv {
+    display: flex;
+    justify-content: space-around;
+}
+#translateDiv form, #translateDiv div {
+    width: 45%;
+}
+#translateResult {
+    text-align: left;;
+    background-color: white;
+    height: auto;
+    color:  black;
+}
+.highlight {
+    color: green
+}
