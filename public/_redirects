@@ -1,0 +1,3 @@
+/api/whoami /.netlify/functions/whoami 200
+/api/timestamp /.netlify/functions/timestamp 200
+/api/url/:original /.netlify/functions/shortener?original=:original 200 
