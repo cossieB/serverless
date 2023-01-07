@@ -14,7 +14,7 @@ export async function handler(event: HandlerEvent, context: HandlerContext): Pro
     }
 }
 
-export default function shuffleArray<T>(arr: T[]) {
+function shuffleArray<T>(arr: T[]) {
     let localCopy = [...arr]
     let shuffledArray: T[] = [];
 
