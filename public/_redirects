@@ -1,3 +1,11 @@
 /api/url/:original /.netlify/functions/url?original=:original 200
 /api/exercisetracker/:_id/logs /.netlify/functions/addexercise?_id=:_id 200
+/api/issues/:project created_by=:created_by assigned_to=:assigned_to open=:open /.netlify/functions/issues?project=:project&created_by=:created_by&assigned_to=:assigned_to&open=:open 200
+/api/issues/:project created_by=:created_by assigned_to=:assigned_to /.netlify/functions/issues?project=:project&created_by=:created_by&assigned_to=:assigned_to 200
+/api/issues/:project created_by=:created_by open=:open /.netlify/functions/issues?project=:project&created_by=:created_by&open=:open 200
+/api/issues/:project assigned_to=:assigned_to open=:open /.netlify/functions/issues?project=:project&assigned_to=:assigned_to&open=:open 200
+/api/issues/:project created_by=:created_by /.netlify/functions/issues?project=:project&created_by=:created_by 200
+/api/issues/:project assigned_to=:assigned_to /.netlify/functions/issues?project=:project&assigned_to=:assigned_to 200
+/api/issues/:project open=:open /.netlify/functions/issues?project=:project&open=:open 200
+/api/issues/:project /.netlify/functions/issues?project=:project 200
 /api/* /.netlify/functions/:splat 200
