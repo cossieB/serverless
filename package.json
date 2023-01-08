@@ -12,6 +12,8 @@
   "dependencies": {
     "@netlify/functions": "^1.4.0",
     "busboy": "^1.6.0",
+    "form-data": "^4.0.0",
+    "mailgun.js": "^8.0.6",
     "mongoose": "^6.8.2"
   },
   "devDependencies": {
