@@ -1,2 +1,3 @@
-/api/url/:original /.netlify/functions/url?original=:original 200 
+/api/url/:original /.netlify/functions/url?original=:original 200
+/api/exercisetracker/:_id/logs /.netlify/functions/addexercise?_id=:_id 200
 /api/* /.netlify/functions/:splat 200

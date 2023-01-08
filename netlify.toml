@@ -1,6 +1,2 @@
 [build]
 publish = "public"
-
-[context.dev.environment]
-MONGO_URI = "mongodb://localhost:27017/express"
-DATABASE_URL = "postgresql://postgres:password@localhost:5432/igdb"
