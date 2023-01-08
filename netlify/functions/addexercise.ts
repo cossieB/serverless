@@ -7,8 +7,8 @@ export async function handler(event: HandlerEvent, context: HandlerContext): Pro
     if (event.httpMethod == "POST") {
         const body = parser.parse(event.body || "{}")
         let { description, duration, date } = body as Record<'description' | 'duration' | 'date', string | undefined>;
-        await mongoose.connect(process.env.MONGO_URI!)
         let _id = event.queryStringParameters?._id
+        await mongoose.connect(process.env.MONGO_URI!)
 
         if (!duration || Number.isNaN(Number(duration))) {
             return {
@@ -52,6 +52,47 @@ export async function handler(event: HandlerEvent, context: HandlerContext): Pro
                 statusCode: 500,
                 body: 'Something went wrong'
             }
+        }
+    }
+    if (event.httpMethod == "GET") {
+        const id = event.queryStringParameters?._id
+        if (!id || id.length != 24) return {
+            statusCode: 404,
+            body: 'User not found'
+        }
+        const { from, to, limit } = event.queryStringParameters as { [key: string]: string }
+        let numLimit: number
+
+        if (!limit || Number.isNaN(Number(limit)))
+            numLimit = Number.POSITIVE_INFINITY
+        else
+            numLimit = Number(limit)
+
+        let fromDate = from ? Date.parse(from) : 0
+        if (Number.isNaN(fromDate)) fromDate = 0
+
+        let toDate = to ? Date.parse(to) : Date.now()
+        if (Number.isNaN(toDate)) toDate = Date.now()
+        await mongoose.connect(process.env.MONGO_URI!)
+        const user = await Users.findById(id)
+        if (!user) return {
+            statusCode: 404,
+            body: 'User not found'
+        }
+
+        let { _id, username, log } = user;
+        const log2 = log.filter(item => item.date.getTime() >= fromDate && item.date.getTime() <= toDate)
+            .slice(0, numLimit)
+            .map(item => ({
+                description: item.description,
+                duration: item.duration,
+                date: item.date.toDateString()
+            }))
+
+        let count = log2.length
+        return {
+            statusCode: 200,
+            body: JSON.stringify({_id, count, username, log: log2})
         }
     }
 
