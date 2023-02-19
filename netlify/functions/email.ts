@@ -3,6 +3,19 @@ import FormData from 'form-data';
 import Mailgun from 'mailgun.js';
 
 export async function handler(event: HandlerEvent, context: HandlerContext): Promise<HandlerResponse> {
+    console.log(event.httpMethod)
+    if (event.httpMethod == "OPTIONS") {
+        const CORS_HEADERS = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Methods': 'POST',
+        };
+        return {
+            statusCode: 200,
+            headers: CORS_HEADERS,
+            body: JSON.stringify({ message: 'Successful preflight call.' }),
+        };
+    }
     if (event.httpMethod == "POST") {
         const mailgun = new Mailgun(FormData);
         const MAILGUN_KEY = process.env['MAILGUN_KEY']
@@ -21,18 +34,18 @@ export async function handler(event: HandlerEvent, context: HandlerContext): Pro
             await mg.messages.create(DOMAIN, data);
             return {
                 statusCode: 200,
-                body: JSON.stringify({status: "success"})
+                body: JSON.stringify({ status: "success" })
             }
         }
         catch (e: any) {
             console.log(e);
             return {
                 statusCode: 500,
-                body: JSON.stringify({error: e.message})
+                body: JSON.stringify({ error: e.message })
             }
         }
     }
     else return {
-            statusCode: 405,
-        }
+        statusCode: 405,
     }
+}
