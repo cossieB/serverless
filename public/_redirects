@@ -8,4 +8,4 @@
 /api/issues/:project assigned_to=:assigned_to /.netlify/functions/issues?project=:project&assigned_to=:assigned_to 301
 /api/issues/:project open=:open /.netlify/functions/issues?project=:project&open=:open 301
 /api/issues/:project /.netlify/functions/issues?project=:project 301
-/api/* /.netlify/functions/:splat 301
+/api/* /.netlify/functions/:splat 200
