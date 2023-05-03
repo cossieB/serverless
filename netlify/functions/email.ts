@@ -7,8 +7,8 @@ export async function handler(event: HandlerEvent, context: HandlerContext): Pro
     if (event.httpMethod == "OPTIONS") {
         const CORS_HEADERS = {
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Methods': 'POST',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Methods': '*',
         };
         return {
             statusCode: 200,

@@ -5,3 +5,4 @@ publish = "public"
 for = "/*"
 [headers.values]
 Access-Control-Allow-Origin = "*"
+Access-Control-Allow-Headers = "*"
