@@ -4,16 +4,16 @@ import Mailgun from 'mailgun.js';
 
 export async function handler(event: HandlerEvent, context: HandlerContext): Promise<HandlerResponse> {
     console.log(event.httpMethod)
+    const CORS_HEADERS = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Max-Age': "8640"
+    };
     if (event.httpMethod == "OPTIONS") {
-        const CORS_HEADERS = {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': '*',
-            'Access-Control-Allow-Methods': '*',
-        };
         return {
             statusCode: 200,
             headers: CORS_HEADERS,
-            body: JSON.stringify({ message: 'Successful preflight call.' }),
         };
     }
     if (event.httpMethod == "POST") {
@@ -34,7 +34,7 @@ export async function handler(event: HandlerEvent, context: HandlerContext): Pro
             await mg.messages.create(DOMAIN, data);
             return {
                 statusCode: 200,
-                body: JSON.stringify({ status: "success" })
+                headers: CORS_HEADERS,
             }
         }
         catch (e: any) {
